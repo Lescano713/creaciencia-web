@@ -8,7 +8,6 @@ import Nosotros from "./pages/Nosotros";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
 import Productos from "./pages/Productos";
-import Admin from "./pages/Productos";
 
 function App() {
   return (
