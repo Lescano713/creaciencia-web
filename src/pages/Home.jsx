@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../services/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import ProductCard from '../components/ProductCard';
+import HeroSlider from '../components/HeroSlider';
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
@@ -15,15 +16,11 @@ const Home = () => {
 
   return (
     <main>
-      {/* Hero Section del Wireframe */}
-      <section className="hero-blue">
-        <div className="hero-content">
-          <h1>Equipamiento de vanguardia para mentes que transforman el mundo.</h1>
-          <button className="btn-red">Conoce más</button>
-        </div>
-      </section>
 
-      {/* Categorías Principales */}
+      {/* HERO CON SLIDER */}
+      <HeroSlider />
+
+      {/* Categorías */}
       <section className="categories">
         <h2>Nuestros Productos</h2>
         <div className="categories-grid">
@@ -33,7 +30,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Catálogo Dinámico */}
+      {/* Catálogo dinámico */}
       <section className="catalog">
         <div className="products-grid">
           {productos.map(p => (
@@ -41,6 +38,7 @@ const Home = () => {
           ))}
         </div>
       </section>
+
     </main>
   );
 };
