@@ -41,14 +41,15 @@
   padding: 1.2rem 2rem;
   transition: all 0.4s ease;
   z-index: 1000;
-
+  /* background: url("/public/images/products-bg.webp") center; */
+  background-size:auto;
+  opacity: 80%;
   /* efecto glass inicial */
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(10px);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   padding: 0.9rem 2rem;
 }

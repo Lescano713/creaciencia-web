@@ -3,6 +3,7 @@
   height: 70vh;
   width: 100%;
   overflow: hidden;
+  margin-bottom: 100px;
 }
 
 /* Cada slide ocupa todo el hero */

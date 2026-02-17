@@ -6,6 +6,7 @@ import {
 import { auth } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import Footer from "../components/Footer";
 
 export default function Login() {
 
@@ -73,6 +74,7 @@ export default function Login() {
         </p>
 
       </form>
+      <Footer></Footer>
     </div>
   );
 }

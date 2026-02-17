@@ -1,7 +1,12 @@
+main{
+  padding: 2em;
+}
 .categoria-bloque {
   margin-bottom: 60px;
 }
-
+.catalogo-content{
+  margin-bottom: 90px;
+}
 .categoria-titulo {
   font-size: 28px;
   margin-bottom: 25px;

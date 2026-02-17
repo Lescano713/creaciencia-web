@@ -66,7 +66,11 @@ const Navbar = () => {
         <div className="nav-container">
 
           <Link to="/" className="logo">
-            CREACIENCIA
+          <img 
+            src="./images/logo.png" 
+            alt="Creaciencia Logo" 
+            className="footer-logo"
+          />
           </Link>
 
           <ul className={`nav-links ${menuOpen ? "active" : ""}`}>

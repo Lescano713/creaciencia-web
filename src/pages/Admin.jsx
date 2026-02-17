@@ -10,6 +10,7 @@ import {
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 import "./Admin.css";
 
