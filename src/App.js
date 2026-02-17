@@ -4,6 +4,10 @@ import Home from './pages/Home';
 import Admin from './pages/Admin';
 import ProductDetail from './pages/ProductDetail';
 import Navbar from './components/Navbar';
+import Nosotros from "./pages/Nosotros";
+import Servicios from "./pages/Servicios";
+import Contacto from "./pages/Contacto";
+import Productos from "./pages/Productos";
 
 function App() {
   return (
@@ -13,6 +17,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/admin-creaciencia" element={<Admin />} />
         <Route path="/producto/:id" element={<ProductDetail />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/productos" element={<Productos />} />
       </Routes>
     </Router>
   );
