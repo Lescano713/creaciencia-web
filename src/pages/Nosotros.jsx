@@ -7,7 +7,7 @@ import "./Nosotros.css";
 const Nosotros = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="nosotros-page">
 
