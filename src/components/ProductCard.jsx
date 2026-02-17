@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = ({ producto }) => {
+  if (!producto) return null;
+
   return (
     <div className="product-card">
       <img src={producto.imagenUrl} alt={producto.nombre} />
