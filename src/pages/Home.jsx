@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import HeroSlider from "../components/HeroSlider";
 import "./Home.css";
-import bgImage from "../images/products-bg.webp"
+import bgImage from "public/images/products-bg.webp"
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
