@@ -61,7 +61,7 @@ const Productos = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="catalogo-page">
 
