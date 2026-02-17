@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import HeroSlider from "../components/HeroSlider";
 import "./Home.css";
-import bgImage from "public/images/products-bg.webp"
+// import bgImage from "public/images/products-bg.webp";
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
@@ -29,7 +29,8 @@ const Home = () => {
 
       {/* PRODUCTOS DESTACADOS CON FONDO */}
       <section className="products-section" 
-      style={{ backgroundImage: `url(${bgImage})` }}>
+      // style={{ backgroundImage: `url(${bgImage})` }}
+      >
         <div className="products-overlay">
           <h2>PRODUCTOS</h2>
 
