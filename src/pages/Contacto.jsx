@@ -50,7 +50,7 @@ const Contacto = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Slider />
 
       <main className="contacto-page">

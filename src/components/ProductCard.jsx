@@ -1,17 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./ProductCard.css";
 
 const ProductCard = ({ producto }) => {
-  if (!producto) return null;
-
   return (
     <div className="product-card">
-      <img src={producto.imagenUrl} alt={producto.nombre} />
-      <h3>{producto.nombre}</h3>
-      <p>{producto.categoria}</p>
-      <Link to={`/producto/${producto.id}`} className="btn-detalles">
-        Detalles
-      </Link>
+
+      <img src={producto.imagen} alt={producto.nombre} />
+
+      <div className="product-overlay">
+        <h4>{producto.nombre}</h4>
+        <p>{producto.marca}</p>
+
+        <Link to={`/producto/${producto.id}`}>
+          <button>Ver Producto</button>
+        </Link>
+      </div>
+
     </div>
   );
 };
