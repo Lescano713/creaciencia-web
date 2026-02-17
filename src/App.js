@@ -9,6 +9,7 @@ import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
 import Productos from "./pages/Productos";
 
+
 function App() {
   return (
     <Router>
@@ -16,7 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin-creaciencia" element={<Admin />} />
-        <Route path="/producto/:id" element={<ProductDetail />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:categoria" element={<Productos />} />
+        <Route path="/producto/:slug" element={<ProductDetail />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/contacto" element={<Contacto />} />

@@ -8,6 +8,43 @@
   padding: 120px 20px;
   background: url("/public/images/products-bg.webp") center/cover no-repeat;
 }
+.search-container {
+  margin: 30px 0;
+  text-align: center;
+}
+/* ===================== */
+/* search SECTION */
+/* ===================== */
+.search-container {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 60%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.search-hint {
+  margin-top: 10px;
+  color: #888;
+  font-size: 14px;
+}
+
+.no-results {
+  text-align: center;
+  margin: 30px 0;
+  color: #888;
+  font-size: 16px;
+}
 
 /* Overlay oscuro 85% */
 .products-overlay {

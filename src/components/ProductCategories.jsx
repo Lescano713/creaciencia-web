@@ -1,42 +1,49 @@
-import React, { useEffect, useState } from "react";
-import "./ProductCategories.css";
+import { useNavigate } from "react-router-dom";
 
-const categories = [
-  {
-    title: "INDUSTRIA",
-    image: "/images/industria.webp",
-  },
-  {
-    title: "INVESTIGACIÓN",
-    image: "/images/investigacion.webp",
-  },
-  {
-    title: "EDUCACIÓN",
-    image: "/images/educacion.webp",
-  },
-];
+export default function ProductCategories() {
 
-const ProductCategories = () => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setVisible(true), 200);
-  }, []);
+  const navigate = useNavigate();
 
   return (
-    <div className={`categories-container ${visible ? "show" : ""}`}>
-      {categories.map((item, index) => (
-        <div
-          key={index}
-          className="category-card"
-          style={{ backgroundImage: `url(${item.image})` }}
-        >
-          <div className="overlay"></div>
-          <h3>{item.title}</h3>
-        </div>
-      ))}
-    </div>
-  );
-};
+    <section
+      className="products-section"
+      style={{
+        backgroundImage: "url('/images/products-bg.webp')",
+      }}
+    >
+      <div className="products-overlay">
 
-export default ProductCategories;
+        <h2 className="section-title">PRODUCTOS</h2>
+
+        <div className="categories-grid">
+
+          <div
+            className="cat-card"
+            onClick={() => navigate("/productos/industria")}
+          >
+            <div className="cat-overlay"></div>
+            <h3>INDUSTRIA</h3>
+          </div>
+
+          <div
+            className="cat-card"
+            onClick={() => navigate("/productos/investigacion")}
+          >
+            <div className="cat-overlay"></div>
+            <h3>INVESTIGACIÓN</h3>
+          </div>
+
+          <div
+            className="cat-card"
+            onClick={() => navigate("/productos/educacion")}
+          >
+            <div className="cat-overlay"></div>
+            <h3>EDUCACIÓN</h3>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+}

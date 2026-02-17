@@ -11,9 +11,13 @@ import Footer from "../components/Footer";
 import "./Home.css";
 
 const Home = () => {
+
   const [productos, setProductos] = useState([]);
+  const [busqueda, setBusqueda] = useState("");
+  const [busquedaDebounced, setBusquedaDebounced] = useState("");
   const navigate = useNavigate();
 
+  // 🔥 Obtener productos
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "productos"), (snapshot) => {
       setProductos(
@@ -27,14 +31,41 @@ const Home = () => {
     return () => unsub();
   }, []);
 
+  // 🔥 Debounce 300ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setBusquedaDebounced(busqueda);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [busqueda]);
+
+  // 🔥 Normalizar texto (sin tildes)
+  const normalizar = (texto) => {
+    return texto
+      ?.toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
+  // 🔥 Filtro SOLO por nombre o slug
+  const productosFiltrados =
+  busquedaDebounced.trim() === ""
+    ? productos
+    : productos.filter((p) => {
+        const nombreNormalizado = normalizar(p.nombre || "");
+        const busquedaNormalizada = normalizar(busquedaDebounced);
+
+        return nombreNormalizado.startsWith(busquedaNormalizada);
+      });
+
+
+
   return (
     <main>
 
       {/* HERO */}
       <HeroSlider />
-
-      {/* SUSCRÍBETE */}
-      <Subscribe />
 
       {/* ===================== */}
       {/* SECCIÓN CATEGORÍAS */}
@@ -53,7 +84,7 @@ const Home = () => {
 
             <div
               className="cat-card"
-              onClick={() => navigate("/industria")}
+              onClick={() => navigate("/productos/industria")}
             >
               <div className="cat-overlay"></div>
               <h3>INDUSTRIA</h3>
@@ -61,7 +92,7 @@ const Home = () => {
 
             <div
               className="cat-card"
-              onClick={() => navigate("/investigacion")}
+              onClick={() => navigate("/productos/investigacion")}
             >
               <div className="cat-overlay"></div>
               <h3>INVESTIGACIÓN</h3>
@@ -69,7 +100,7 @@ const Home = () => {
 
             <div
               className="cat-card"
-              onClick={() => navigate("/educacion")}
+              onClick={() => navigate("/productos/educacion")}
             >
               <div className="cat-overlay"></div>
               <h3>EDUCACIÓN</h3>
@@ -81,39 +112,38 @@ const Home = () => {
       </section>
 
       {/* ===================== */}
-      {/* CATÁLOGO DINÁMICO */}
+      {/* BUSCADOR + CATÁLOGO */}
       {/* ===================== */}
       <section className="catalog">
+
         <h2 className="section-title dark">CATÁLOGO</h2>
 
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Buscar producto por nombre..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            className="search-input"
+          />
+        </div>
+
+        {busquedaDebounced.length > 0 &&
+          productosFiltrados.length === 0 && (
+            <p className="no-results">
+              No se encontraron productos.
+            </p>
+          )}
+
         <div className="products-grid">
-          {productos.map((p) => (
+          {productosFiltrados.map((p) => (
             <ProductCard key={p.id} producto={p} />
           ))}
         </div>
+
       </section>
 
-      {/* ===================== */}
-      {/* SERVICIOS */}
-      {/* ===================== */}
-      <section className="services-section">
-        <h2 className="section-title dark">SERVICIOS</h2>
-
-        <div className="services-grid">
-          <div className="service-card">
-            <h3>Garantías</h3>
-          </div>
-
-          <div className="service-card">
-            <h3>Capacitación</h3>
-          </div>
-
-          <div className="service-card large">
-            <h3>Instalación</h3>
-          </div>
-        </div>
-      </section>
-
+      <Subscribe />
       <Footer />
 
     </main>
