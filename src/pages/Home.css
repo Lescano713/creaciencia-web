@@ -6,7 +6,7 @@
   position: relative;
   position: relative;
   padding: 120px 20px;
-  background: url("/images/products-bg.webp") center/cover no-repeat;
+  background: url("/public/images/products-bg.webp") center/cover no-repeat;
 }
 
 /* Overlay oscuro 85% */
@@ -58,15 +58,15 @@
 
 /* IMÁGENES */
 .cat-card:nth-child(1) {
-  background-image: url("/images/industria.webp");
+  background-image: url("/public/images/industria.webp");
 }
 
 .cat-card:nth-child(2) {
-  background-image: url("/images/investigacion.webp");
+  background-image: url("/public/images/investigacion.webp");
 }
 
 .cat-card:nth-child(3) {
-  background-image: url("/images/educacion.webp");
+  background-image: url("/public/images/educacion.webp");
 }
 
 /* Capa azul */
