@@ -13,7 +13,7 @@ import {
   uploadBytes,
   getDownloadURL
 } from "firebase/storage";
-import "../styles/admin.css";
+import "./Admin.css";
 
 const Admin = () => {
   const [producto, setProducto] = useState({
