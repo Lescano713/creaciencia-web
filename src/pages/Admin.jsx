@@ -6,7 +6,6 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 export default function Admin() {
 
   const [nombre, setNombre] = useState("");
-  const [precio, setPrecio] = useState("");
   const [categoria, setCategoria] = useState("");
   const [subcategoria, setSubcategoria] = useState("");
   const [imagen, setImagen] = useState(null);
@@ -15,7 +14,7 @@ export default function Admin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!nombre || !precio || !categoria || !subcategoria || !imagen) {
+    if (!nombre || !categoria || !subcategoria || !imagen) {
       alert("Completa todos los campos");
       return;
     }
@@ -23,15 +22,14 @@ export default function Admin() {
     try {
       setLoading(true);
 
-      // 1️⃣ Subir imagen a Storage
+      // 1️⃣ Subir imagen
       const imageRef = ref(storage, `productos/${Date.now()}_${imagen.name}`);
       await uploadBytes(imageRef, imagen);
       const imageUrl = await getDownloadURL(imageRef);
 
-      // 2️⃣ Guardar producto en Firestore
+      // 2️⃣ Guardar en Firestore
       const docRef = await addDoc(collection(db, "productos"), {
         nombre,
-        precio: Number(precio),
         categoria,
         subcategoria,
         imagen: imageUrl,
@@ -39,12 +37,10 @@ export default function Admin() {
       });
 
       console.log("Producto creado con ID:", docRef.id);
-
       alert("Producto agregado correctamente");
 
-      // limpiar formulario
+      // limpiar
       setNombre("");
-      setPrecio("");
       setCategoria("");
       setSubcategoria("");
       setImagen(null);
@@ -68,13 +64,6 @@ export default function Admin() {
           placeholder="Nombre del producto"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Precio"
-          value={precio}
-          onChange={(e) => setPrecio(e.target.value)}
         />
 
         <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
