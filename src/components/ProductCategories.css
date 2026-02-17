@@ -1,0 +1,82 @@
+.categories-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.categories-container.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-card {
+  position: relative;
+  width: 320px;
+  height: 380px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.category-card h3 {
+  position: relative;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 2;
+}
+
+/* 🔵 Capa azul tipo tu diseño */
+.category-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 70, 120, 0.55);
+  transition: background 0.5s ease;
+}
+
+/* ✨ Hover elegante */
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.category-card:hover .overlay {
+  background: rgba(0, 90, 160, 0.4);
+}
+
+/* Animación interna de imagen */
+.category-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.7s ease;
+  z-index: 0;
+}
+
+.category-card:hover::before {
+  transform: scale(1.1);
+}
+@media (max-width: 768px) {
+  .categories-container {
+    gap: 25px;
+  }
+
+  .category-card {
+    width: 90%;
+    height: 300px;
+  }
+}

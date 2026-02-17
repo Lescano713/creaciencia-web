@@ -26,6 +26,7 @@ const Home = () => {
 
       {/* HERO SLIDER */}
       <HeroSlider />
+      <Subscribe />
 
       {/* PRODUCTOS DESTACADOS CON FONDO */}
       <section className="products-section" 
