@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db, storage } from "../services/firebase";
+import { db, storage, auth } from "../services/firebase";
 import {
   collection,
   addDoc,
@@ -8,9 +8,14 @@ import {
   doc
 } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import "../pages/Admin.css";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+
+import "./Admin.css";
 
 export default function Admin() {
+
+  const navigate = useNavigate();
 
   const [nombre, setNombre] = useState("");
   const [marca, setMarca] = useState("");
@@ -20,12 +25,19 @@ export default function Admin() {
   const [imagen, setImagen] = useState(null);
   const [ficha, setFicha] = useState(null);
   const [productos, setProductos] = useState([]);
-  const [busqueda, setBusqueda] = useState("");
+  const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mensajeError, setMensajeError] = useState("");
-  const [mensajeExito, setMensajeExito] = useState("");
 
-  // 🔥 Listener en tiempo real
+  // 🔥 Generar slug automático
+  const generarSlug = (texto) => {
+    return texto
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, "-");
+  };
+
+  // 🔥 Obtener productos en tiempo real
   useEffect(() => {
     const unsubscribe = onSnapshot(
       collection(db, "productos"),
@@ -41,38 +53,30 @@ export default function Admin() {
     return () => unsubscribe();
   }, []);
 
-  const generarSlug = (texto) => {
-    return texto
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "-");
+  // 🔥 Cerrar sesión
+  const cerrarSesion = async () => {
+    await signOut(auth);
+    navigate("/");
   };
 
+  // 🔥 Agregar producto
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMensajeError("");
-    setMensajeExito("");
+    setMensaje("");
 
     if (!nombre || !marca || !descripcion || !categoria || !subcategoria) {
-      setMensajeError("Todos los campos son obligatorios.");
+      setMensaje("Completa todos los campos.");
       return;
     }
 
-    if (!imagen) {
-      setMensajeError("Debes subir una imagen.");
-      return;
-    }
-
-    if (!ficha) {
-      setMensajeError("Debes subir la ficha técnica.");
+    if (!imagen || !ficha) {
+      setMensaje("Debes subir imagen y ficha técnica.");
       return;
     }
 
     try {
       setLoading(true);
 
-      // Subir imagen
       const imageRef = ref(
         storage,
         `productos/imagenes/${Date.now()}_${imagen.name}`
@@ -80,7 +84,6 @@ export default function Admin() {
       await uploadBytes(imageRef, imagen);
       const imageUrl = await getDownloadURL(imageRef);
 
-      // Subir ficha
       const fichaRef = ref(
         storage,
         `productos/fichas/${Date.now()}_${ficha.name}`
@@ -100,9 +103,8 @@ export default function Admin() {
         createdAt: new Date()
       });
 
-      setMensajeExito("Producto agregado correctamente.");
+      setMensaje("Producto agregado correctamente.");
 
-      // limpiar
       setNombre("");
       setMarca("");
       setDescripcion("");
@@ -112,121 +114,121 @@ export default function Admin() {
       setFicha(null);
 
     } catch (error) {
-      console.error(error);
-      setMensajeError("Ocurrió un error al guardar.");
+      setMensaje("Error al guardar producto.");
     } finally {
       setLoading(false);
     }
   };
 
+  // 🔥 Eliminar producto
   const eliminarProducto = async (id) => {
     await deleteDoc(doc(db, "productos", id));
   };
 
-  const productosFiltrados = productos.filter((prod) =>
-    prod.nombre.toLowerCase().includes(busqueda.toLowerCase())
-  );
-
   return (
     <div className="admin-container">
 
-      {/* FORMULARIO */}
-      <div className="admin-form">
-        <h2>Agregar Producto</h2>
-
-        <form onSubmit={handleSubmit}>
-
-          <input
-            type="text"
-            placeholder="Nombre"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-          />
-
-          <input
-            type="text"
-            placeholder="Marca"
-            value={marca}
-            onChange={(e) => setMarca(e.target.value)}
-          />
-
-          <textarea
-            placeholder="Descripción"
-            value={descripcion}
-            onChange={(e) => setDescripcion(e.target.value)}
-          />
-
-          <select
-            value={categoria}
-            onChange={(e) => setCategoria(e.target.value)}
-          >
-            <option value="">Categoría</option>
-            <option value="industria">Industria</option>
-            <option value="educacion">Educación</option>
-            <option value="investigacion">Investigación</option>
-          </select>
-
-          <input
-            type="text"
-            placeholder="Subcategoría"
-            value={subcategoria}
-            onChange={(e) => setSubcategoria(e.target.value)}
-          />
-
-          <label>Imagen:</label>
-          <input
-            type="file"
-            onChange={(e) => setImagen(e.target.files[0])}
-          />
-
-          <label>Ficha técnica:</label>
-          <input
-            type="file"
-            onChange={(e) => setFicha(e.target.files[0])}
-          />
-
-          {mensajeError && (
-            <p className="error-message">{mensajeError}</p>
-          )}
-
-          {mensajeExito && (
-            <p className="success-message">{mensajeExito}</p>
-          )}
-
-          <button type="submit" disabled={loading}>
-            {loading ? "Guardando..." : "Agregar Producto"}
-          </button>
-
-        </form>
+      <div className="admin-header">
+        <h1>Panel Administrativo</h1>
+        <button className="logout-btn" onClick={cerrarSesion}>
+          Cerrar sesión
+        </button>
       </div>
 
-      {/* PANEL DERECHO */}
-      <div className="admin-list">
-        <h2>Productos</h2>
+      <div className="admin-grid">
 
-        <input
-          type="text"
-          placeholder="Buscar producto..."
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          className="search-input"
-        />
+        {/* FORMULARIO */}
+        <div className="admin-form">
 
-        {productosFiltrados.map((prod) => (
-          <div key={prod.id} className="product-card-admin">
-            <h4>{prod.nombre}</h4>
-            <p><strong>Marca:</strong> {prod.marca}</p>
-            <p>{prod.descripcion}</p>
+          <h2>Agregar Producto</h2>
 
-            <a href={prod.fichaTecnica} target="_blank" rel="noreferrer">
-              Descargar ficha técnica
-            </a>
+          <form onSubmit={handleSubmit}>
 
-            <button onClick={() => eliminarProducto(prod.id)}>
-              Eliminar
+            <input
+              type="text"
+              placeholder="Nombre"
+              value={nombre}
+              onChange={(e) => setNombre(e.target.value)}
+            />
+
+            <input
+              type="text"
+              placeholder="Marca"
+              value={marca}
+              onChange={(e) => setMarca(e.target.value)}
+            />
+
+            <textarea
+              placeholder="Descripción"
+              value={descripcion}
+              onChange={(e) => setDescripcion(e.target.value)}
+            />
+
+            <select
+              value={categoria}
+              onChange={(e) => setCategoria(e.target.value)}
+            >
+              <option value="">Categoría</option>
+              <option value="industria">Industria</option>
+              <option value="educacion">Educación</option>
+              <option value="investigacion">Investigación</option>
+            </select>
+
+            <input
+              type="text"
+              placeholder="Subcategoría"
+              value={subcategoria}
+              onChange={(e) => setSubcategoria(e.target.value)}
+            />
+
+            <label>Imagen</label>
+            <input
+              type="file"
+              onChange={(e) => setImagen(e.target.files[0])}
+            />
+
+            <label>Ficha técnica (PDF)</label>
+            <input
+              type="file"
+              onChange={(e) => setFicha(e.target.files[0])}
+            />
+
+            {mensaje && <p className="admin-message">{mensaje}</p>}
+
+            <button type="submit" disabled={loading}>
+              {loading ? "Guardando..." : "Agregar Producto"}
             </button>
-          </div>
-        ))}
+
+          </form>
+        </div>
+
+        {/* LISTA PRODUCTOS */}
+        <div className="admin-list">
+
+          <h2>Productos Agregados</h2>
+
+          {productos.length === 0 && (
+            <p>No hay productos registrados.</p>
+          )}
+
+          {productos.map((p) => (
+            <div key={p.id} className="admin-product-item">
+              <div>
+                <strong>{p.nombre}</strong>
+                <p>{p.categoria} - {p.subcategoria}</p>
+              </div>
+
+              <button
+                className="delete-btn"
+                onClick={() => eliminarProducto(p.id)}
+              >
+                Eliminar
+              </button>
+            </div>
+          ))}
+
+        </div>
+
       </div>
 
     </div>

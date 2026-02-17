@@ -8,6 +8,10 @@ import Nosotros from "./pages/Nosotros";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
 import Productos from "./pages/Productos";
+import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+
 
 
 function App() {
@@ -24,8 +28,11 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/productos" element={<Productos />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/admin"
+        element={<ProtectedRoute> <Admin /></ProtectedRoute>}/>
+        </Routes>
     </Router>
   );
 }

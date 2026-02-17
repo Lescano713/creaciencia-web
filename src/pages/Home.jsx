@@ -66,6 +66,7 @@ const Home = () => {
 
       {/* HERO */}
       <HeroSlider />
+      <Subscribe></Subscribe>
 
       {/* ===================== */}
       {/* SECCIÓN CATEGORÍAS */}
@@ -143,7 +144,6 @@ const Home = () => {
 
       </section>
 
-      <Subscribe />
       <Footer />
 
     </main>

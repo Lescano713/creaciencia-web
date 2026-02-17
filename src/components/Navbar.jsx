@@ -75,7 +75,7 @@ const Navbar = () => {
             <li><Link to="/servicios">Servicios</Link></li>
             <li><Link to="/nosotros">Nosotros</Link></li>
             <li><Link to="/contacto">Contacto</Link></li>
-            <li><Link to="/admin">Admin</Link></li>
+            <li><Link to="/admin">Log in</Link></li>
           </ul>
 
           <div

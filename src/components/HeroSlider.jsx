@@ -45,35 +45,40 @@ function HeroSlider() {
           key={index}
           className={index === current ? "slide active" : "slide"}
         >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            loading={index === 0 ? "eager" : "lazy"}
-            decoding="async"
-          />
 
           <div className="hero-overlay">
             <div className="hero-content">
-              <h1>{slide.title}</h1>
-              <p>{slide.subtitle}</p>
-              <button className="btn-red">Conoce más</button>
+
+              {/* TEXTO */}
+              <div className="hero-text">
+                <h1>{slide.title}</h1>
+                <p>{slide.subtitle}</p>
+                <button className="btn-red">Conoce más</button>
+              </div>
+
+              {/* IMAGEN */}
+              <div className="hero-image">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </div>
+
             </div>
           </div>
+
         </div>
       ))}
 
-      <button className="arrow left" onClick={prevSlide}>❮</button>
-      <button className="arrow right" onClick={nextSlide}>❯</button>
+      {/* Flechas */}
+      <button className="arrow left" onClick={prevSlide}>
+        ❮
+      </button>
 
-      <div className="dots">
-        {slides.map((_, i) => (
-          <span
-            key={i}
-            className={i === current ? "dot active" : "dot"}
-            onClick={() => setCurrent(i)}
-          />
-        ))}
-      </div>
+      <button className="arrow right" onClick={nextSlide}>
+        ❯
+      </button>
 
     </section>
   );
