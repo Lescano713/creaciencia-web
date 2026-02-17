@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import Slider from "../components/Slider";
+import Slider from "../components/HeroSlider";
 import Subscribe from "../components/Subscribe";
 import Footer from "../components/Footer";
 import "./Contacto.css";
