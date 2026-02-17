@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import HeroSlider from "../components/HeroSlider";
 import "./Home.css";
+import Subscribe from "../components/Subscribe";
 // import bgImage from "public/images/products-bg.webp";
 
 const Home = () => {
