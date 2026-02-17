@@ -22,3 +22,63 @@
   text-align: center;
   padding: 1rem;
 }
+.footer {
+  background: #0d1b2a;
+  color: white;
+  padding: 80px 20px 30px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-brand p {
+  margin-top: 15px;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+
+.footer-logo {
+  width: 160px;
+}
+
+.footer-col h4 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
+  transition: 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #ff3d3d;
+}
+
+.footer-bottom {
+  margin-top: 50px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}

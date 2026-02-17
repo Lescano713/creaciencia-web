@@ -1,36 +1,60 @@
+import React from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
+
       <div className="footer-container">
 
-        <div>
-          <h3>CREACiencia</h3>
-          <p>Equipamiento científico para aprender, investigar y crear.</p>
+        {/* LOGO Y DESCRIPCIÓN */}
+        <div className="footer-col footer-brand">
+          <img 
+            src="/images/logo.webp" 
+            alt="Creaciencia Logo" 
+            className="footer-logo"
+          />
+          <p>
+            Equipamiento de vanguardia para mentes que transforman el mundo.
+          </p>
         </div>
 
-        <div>
-          <h4>MENÚ</h4>
-          <p>Contacto</p>
-          <p>Nosotros</p>
-          <p>Servicios</p>
-          <p>Productos</p>
+        {/* ENLACES */}
+        <div className="footer-col">
+          <h4>Enlaces</h4>
+          <ul>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/nosotros">Nosotros</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
+          </ul>
         </div>
 
-        <div>
-          <h4>CONTACTO</h4>
-          <p>934120670</p>
-          <p>correo@creaciencia.com</p>
+        {/* PRODUCTOS */}
+        <div className="footer-col">
+          <h4>Áreas</h4>
+          <ul>
+            <li><Link to="/productos/industria">Industria</Link></li>
+            <li><Link to="/productos/investigacion">Investigación</Link></li>
+            <li><Link to="/productos/educacion">Educación</Link></li>
+          </ul>
+        </div>
+
+        {/* CONTACTO */}
+        <div className="footer-col">
+          <h4>Contacto</h4>
+          <p>Email: info@creaciencia.com</p>
+          <p>Tel: +51 999 999 999</p>
         </div>
 
       </div>
 
       <div className="footer-bottom">
-        © 2026 Creaciencia
+        © {new Date().getFullYear()} Creaciencia. Todos los derechos reservados.
       </div>
+
     </footer>
   );
-}
+};
 
 export default Footer;

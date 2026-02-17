@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { db } from "../services/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+
 import ProductCard from "../components/ProductCard";
 import HeroSlider from "../components/HeroSlider";
-import "./Home.css";
 import Subscribe from "../components/Subscribe";
-// import bgImage from "public/images/products-bg.webp";
+import Footer from "../components/Footer";
+
+import "./Home.css";
 
 const Home = () => {
   const [productos, setProductos] = useState([]);
@@ -15,7 +17,10 @@ const Home = () => {
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "productos"), (snapshot) => {
       setProductos(
-        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
       );
     });
 
@@ -25,44 +30,62 @@ const Home = () => {
   return (
     <main>
 
-      {/* HERO SLIDER */}
+      {/* HERO */}
       <HeroSlider />
+
+      {/* SUSCRÍBETE */}
       <Subscribe />
 
-      {/* PRODUCTOS DESTACADOS CON FONDO */}
-      <section className="products-section" 
-      // style={{ backgroundImage: `url(${bgImage})` }}
+      {/* ===================== */}
+      {/* SECCIÓN CATEGORÍAS */}
+      {/* ===================== */}
+      <section
+        className="products-section"
+        style={{
+          backgroundImage: "url('/images/products-bg.webp')",
+        }}
       >
         <div className="products-overlay">
-          <h2>PRODUCTOS</h2>
+
+          <h2 className="section-title">PRODUCTOS</h2>
 
           <div className="categories-grid">
+
             <div
               className="cat-card"
               onClick={() => navigate("/industria")}
             >
-              INDUSTRIA
+              <div className="cat-overlay"></div>
+              <h3>INDUSTRIA</h3>
             </div>
 
             <div
               className="cat-card"
               onClick={() => navigate("/investigacion")}
             >
-              INVESTIGACIÓN
+              <div className="cat-overlay"></div>
+              <h3>INVESTIGACIÓN</h3>
             </div>
 
             <div
               className="cat-card"
               onClick={() => navigate("/educacion")}
             >
-              EDUCACIÓN
+              <div className="cat-overlay"></div>
+              <h3>EDUCACIÓN</h3>
             </div>
+
           </div>
+
         </div>
       </section>
 
-      {/* CATÁLOGO DINÁMICO (TU ORIGINAL) */}
+      {/* ===================== */}
+      {/* CATÁLOGO DINÁMICO */}
+      {/* ===================== */}
       <section className="catalog">
+        <h2 className="section-title dark">CATÁLOGO</h2>
+
         <div className="products-grid">
           {productos.map((p) => (
             <ProductCard key={p.id} producto={p} />
@@ -70,9 +93,11 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ===================== */}
       {/* SERVICIOS */}
+      {/* ===================== */}
       <section className="services-section">
-        <h2>SERVICIOS</h2>
+        <h2 className="section-title dark">SERVICIOS</h2>
 
         <div className="services-grid">
           <div className="service-card">
@@ -88,6 +113,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
 
     </main>
   );

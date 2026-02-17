@@ -1,126 +1,179 @@
-/* ============================= */
-/*        PRODUCTOS SECTION      */
-/* ============================= */
+/* ===================== */
+/* PRODUCTS SECTION */
+/* ===================== */
 
 .products-section {
   position: relative;
-  background-image: url("/public/images/products-bg.webp");
-  background-size: cover;
-  background-position: center;
-  padding: 140px 0;
-  overflow: hidden;
-}
-
-.products-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: brightness(0.75);
-}
-
-.products-content {
   position: relative;
-  z-index: 2;
+  padding: 120px 20px;
+  background: url("/images/products-bg.webp") center/cover no-repeat;
 }
 
+/* Overlay oscuro 85% */
+.products-overlay {
+  background: rgba(10, 25, 47, 0.85); /* 85% oscuro */
+  padding: 80px 20px;
+}
+
+/* Títulos */
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 60px;
+  letter-spacing: 3px;
+}
+
+.section-title.dark {
+  color: #0d1b2a;
+}
+
+/* ===================== */
+/* CATEGORIES GRID */
+/* ===================== */
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  max-width: var(--max-width);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
   margin: auto;
 }
 
+/* Card base */
 .cat-card {
-  background: rgba(255,255,255,0.08);
-  color: var(--white);
-  padding: 4rem 1rem;
-  font-weight: bold;
+  position: relative;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
   cursor: pointer;
-  transition: var(--transition);
-  backdrop-filter: blur(4px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
+/* IMÁGENES */
+.cat-card:nth-child(1) {
+  background-image: url("/images/industria.webp");
+}
+
+.cat-card:nth-child(2) {
+  background-image: url("/images/investigacion.webp");
+}
+
+.cat-card:nth-child(3) {
+  background-image: url("/images/educacion.webp");
+}
+
+/* Capa azul */
+.cat-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 60, 120, 0.55);
+  transition: background 0.4s ease;
+}
+
+/* Texto */
+.cat-card h3 {
+  position: relative;
+  color: white;
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+/* Hover elegante */
 .cat-card:hover {
-  transform: translateY(-10px);
-  background: rgba(0,191,255,0.3);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
+.cat-card:hover .cat-overlay {
+  background: rgba(0, 90, 180, 0.7);
+}
 
-/* ============================= */
-/*           CATÁLOGO            */
-/* ============================= */
+.cat-card:hover h3 {
+  transform: scale(1.08);
+}
+
+/* ===================== */
+/* CATÁLOGO */
+/* ===================== */
 
 .catalog {
-  padding: 4rem 2rem;
-  background: var(--primary-light);
+  padding: 100px 20px;
+  background: #f8f9fa;
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  max-width: var(--max-width);
-  margin: auto;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 50px auto 0;
 }
 
-
-/* ============================= */
-/*           SERVICIOS           */
-/* ============================= */
+/* ===================== */
+/* SERVICES */
+/* ===================== */
 
 .services-section {
-  background: var(--primary-dark);
-  color: var(--white);
-  padding: 5rem 2rem;
+  padding: 100px 20px;
+  background: white;
   text-align: center;
-}
-
-.services-section h2 {
-  margin-bottom: 3rem;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  max-width: 1000px;
-  margin: auto;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: 60px auto 0;
 }
 
 .service-card {
-  border: 1px solid var(--primary-blue);
-  padding: 3rem;
-  transition: var(--transition);
+  background: #0d1b2a;
+  color: white;
+  padding: 60px 20px;
+  border-radius: 8px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .service-card:hover {
-  background: rgba(0,191,255,0.1);
-  transform: scale(1.03);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.large {
-  grid-column: span 2;
-}
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
 
+@media (max-width: 768px) {
 
-/* ============================= */
-/*           RESPONSIVE          */
-/* ============================= */
-
-@media (max-width: 900px) {
-
-  .categories-grid {
-    grid-template-columns: 1fr;
+  .products-section {
+    padding: 80px 20px;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr;
+  .products-overlay {
+    padding: 60px 15px;
   }
 
-  .large {
-    grid-column: span 1;
+  .section-title {
+    font-size: 26px;
   }
+
+  .cat-card {
+    height: 220px;
+  }
+
+  .cat-card h3 {
+    font-size: 18px;
+  }
+
 }
