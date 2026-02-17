@@ -8,6 +8,7 @@ import Nosotros from "./pages/Nosotros";
 import Servicios from "./pages/Servicios";
 import Contacto from "./pages/Contacto";
 import Productos from "./pages/Productos";
+import Admin from "./pages/Productos";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/servicios" element={<Servicios />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/productos" element={<Productos />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Router>
   );
