@@ -3,23 +3,27 @@
 /* ============================= */
 
 .products-section {
+  position: relative;
   background-image: url("/public/images/products-bg.webp");
   background-size: cover;
   background-position: center;
-  padding: 5rem 2rem;
-  text-align: center;
+  padding: 140px 0;
+  overflow: hidden;
 }
 
-.products-overlay {
-  background: rgba(0, 20, 40, 0.85);
-  padding: 4rem 2rem;
+.products-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: brightness(0.75);
 }
 
-.products-section h2 {
-  color: var(--white);
-  margin-bottom: 3rem;
-  font-size: 2rem;
+.products-content {
+  position: relative;
+  z-index: 2;
 }
+
 
 .categories-grid {
   display: grid;
