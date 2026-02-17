@@ -7,7 +7,7 @@ import "./Servicios.css";
 const Servicios = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
 
       <main className="servicios-page">
 
