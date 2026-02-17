@@ -1,0 +1,9 @@
+:root {
+  --primary-dark: #00111f;
+  --primary-blue: #00bfff;
+  --primary-light: #f8f9fa;
+  --white: #ffffff;
+
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+}
