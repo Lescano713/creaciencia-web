@@ -18,7 +18,38 @@ const Navbar = () => {
 
   return (
     <header className="navbar-wrapper">
+      {/* NAVBAR */}
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+        <div className="nav-container">
 
+          <Link to="/" className="logo">
+          <img 
+            src="./images/logo.png" 
+            alt="Creaciencia Logo" 
+            className="nav-logo"
+          />
+          </Link>
+
+          <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+            <li><Link to="/">Inicio</Link></li>
+            <li><Link to="/productos">Productos</Link></li>
+            <li><Link to="/servicios">Servicios</Link></li>
+            <li><Link to="/nosotros">Nosotros</Link></li>
+            <li><Link to="/contacto">Contacto</Link></li>
+            <li><Link to="/admin">Log in</Link></li>
+          </ul>
+
+          <div
+            className={`hamburger ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+        </div>
+      </nav>
       {/* TOP BAR */}
       <div className="top-bar">
         <div className="top-content">
@@ -61,38 +92,7 @@ const Navbar = () => {
         </div>
     </div>
 
-      {/* NAVBAR */}
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="nav-container">
-
-          <Link to="/" className="logo">
-          <img 
-            src="./images/logo.png" 
-            alt="Creaciencia Logo" 
-            className="footer-logo"
-          />
-          </Link>
-
-          <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-            <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/productos">Productos</Link></li>
-            <li><Link to="/servicios">Servicios</Link></li>
-            <li><Link to="/nosotros">Nosotros</Link></li>
-            <li><Link to="/contacto">Contacto</Link></li>
-            <li><Link to="/admin">Log in</Link></li>
-          </ul>
-
-          <div
-            className={`hamburger ${menuOpen ? "open" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-        </div>
-      </nav>
+      
     </header>
   );
 };

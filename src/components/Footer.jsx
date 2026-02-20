@@ -43,8 +43,10 @@ const Footer = () => {
         {/* CONTACTO */}
         <div className="footer-col">
           <h4>Contacto</h4>
-          <p>Email: info@creaciencia.com</p>
-          <p>Tel: +51 999 999 999</p>
+          <p>Email: maria.irribarren@creacienciaperu.com</p>
+          <p>Email: richard.palomino@creacienciaperu.com</p>
+          <p>Tel: +51 987258849</p>
+          <p>Tel: +51 910444610</p>
         </div>
 
       </div>

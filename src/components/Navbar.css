@@ -5,12 +5,13 @@
 .top-bar {
   background: var(--primary-dark);
   padding: 0.4rem 2rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .top-content {
   max-width: var(--max-width);
   margin: auto;
+  /* width: 100vw; */
   display: flex;
   justify-content: flex-end;
 }
@@ -35,17 +36,17 @@
 
 .navbar {
   position: fixed;
-  top: 40px; /* altura top-bar */
+  top: 0; /* altura top-bar */
   left: 0;
   width: 100%;
-  padding: 1.2rem 2rem;
+  padding: 0.9em 1.2rem;
   transition: all 0.4s ease;
   z-index: 1000;
-  /* background: url("/public/images/products-bg.webp") center; */
-  background-size:auto;
-  opacity: 80%;
+  background: url("/public/images/nav-bg.png")center;
+  background-size:cover;
+  /* opacity: 80%; */
   /* efecto glass inicial */
-  background: rgba(255, 255, 255, 0.7);
+  /* background: rgba(255, 255, 255, 0.7); */
   backdrop-filter: blur(10px);
 }
 
@@ -64,12 +65,8 @@
 
 /* ===== LOGO ===== */
 
-.logo {
-  font-weight: 700;
-  font-size: 1.3rem;
-  text-decoration: none;
-  color: var(--primary-dark);
-  letter-spacing: 1px;
+.nav-logo {
+  width: 13em;
   transition: 0.3s ease;
 }
 
@@ -83,12 +80,14 @@
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 2.5rem;
+  gap: 2rem;
+  height: 100%;
+  font-size: 18px;
 }
 
 .nav-links li a {
   text-decoration: none;
-  color: var(--primary-dark);
+  color: #fff;
   font-weight: 500;
   position: relative;
   transition: 0.3s ease;
@@ -152,7 +151,7 @@
 .hamburger span {
   width: 25px;
   height: 3px;
-  background: var(--primary-dark);
+  background: #fafafa;
   transition: 0.4s ease;
 }
 
@@ -177,11 +176,11 @@
 
   .nav-links {
     position: fixed;
-    top: 100px;
+    top: 120px;
     right: 0;
     height: 100vh;
     width: 260px;
-    background: white;
+    background: var(--primary-dark);
     flex-direction: column;
     padding: 3rem 2rem;
     transform: translateX(100%);

@@ -74,7 +74,7 @@ const Home = () => {
       <section
         className="products-section"
         style={{
-          backgroundImage: "url('/images/products-bg.webp')",
+          backgroundImage: "url('/images/nav-bg.png')",
         }}
       >
         <div className="products-overlay">
@@ -117,7 +117,7 @@ const Home = () => {
       {/* ===================== */}
       <section className="catalog">
 
-        <h2 className="section-title dark">CATÁLOGO</h2>
+        <h2 className="section-title dark">VER PRODUCTOS</h2>
 
         <div className="search-container">
           <input
