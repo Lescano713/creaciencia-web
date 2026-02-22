@@ -19,6 +19,7 @@ export default function ProductoDetalle() {
   const [similares, setSimilares] = useState([]);
 
   useEffect(() => {
+
     const obtenerProducto = async () => {
 
       const q = query(
@@ -29,10 +30,36 @@ export default function ProductoDetalle() {
       const snapshot = await getDocs(q);
 
       if (!snapshot.empty) {
-        const data = snapshot.docs[0].data();
-        setProducto({ id: snapshot.docs[0].id, ...data });
 
-        // 🔥 Productos similares (misma categoría)
+        const data = snapshot.docs[0].data();
+        const productoActual = { id: snapshot.docs[0].id, ...data };
+
+        setProducto(productoActual);
+
+        // 🔥 SEO dinámico
+        document.title = `${productoActual.nombre} | Creaciencia Perú`;
+
+        const meta = document.querySelector("meta[name='description']");
+        if (meta) {
+          meta.setAttribute(
+            "content",
+            `${productoActual.nombre} de ${productoActual.marca}. ${productoActual.descripcion}`
+          );
+        }
+
+        // Canonical
+        let link = document.querySelector("link[rel='canonical']");
+        if (!link) {
+          link = document.createElement("link");
+          link.setAttribute("rel", "canonical");
+          document.head.appendChild(link);
+        }
+        link.setAttribute(
+          "href",
+          `https://www.creacienciaperu.com/producto/${productoActual.slug}`
+        );
+
+        // Productos similares
         const similaresQuery = query(
           collection(db, "productos"),
           where("categoria", "==", data.categoria)
@@ -49,6 +76,7 @@ export default function ProductoDetalle() {
     };
 
     obtenerProducto();
+
   }, [slug]);
 
   if (!producto) return <p style={{ padding: "50px" }}>Cargando...</p>;
@@ -61,7 +89,7 @@ export default function ProductoDetalle() {
 
         {/* Breadcrumb */}
         <div className="breadcrumb">
-          <span>{producto.categoria}</span> / 
+          <Link to="/productos">{producto.categoria}</Link> /
           <span> {producto.subcategoria}</span>
         </div>
 
@@ -74,7 +102,11 @@ export default function ProductoDetalle() {
 
           {/* Imagen */}
           <div className="producto-imagen">
-            <img src={producto.imagen} alt={producto.nombre} />
+            <img
+              src={producto.imagen}
+              alt={`${producto.nombre} - ${producto.marca} | Creaciencia Perú`}
+              loading="lazy"
+            />
           </div>
 
           {/* Info */}
@@ -104,6 +136,7 @@ export default function ProductoDetalle() {
             </div>
 
           </div>
+
         </div>
 
         {/* Productos similares */}
@@ -118,7 +151,11 @@ export default function ProductoDetalle() {
                   to={`/producto/${item.slug}`}
                   className="similar-card"
                 >
-                  <img src={item.imagen} alt={item.nombre} />
+                  <img
+                    src={item.imagen}
+                    alt={`${item.nombre} - Creaciencia Perú`}
+                    loading="lazy"
+                  />
                   <p>{item.nombre}</p>
                 </Link>
               ))}

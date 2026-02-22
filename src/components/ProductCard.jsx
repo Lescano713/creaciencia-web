@@ -12,11 +12,9 @@ const ProductCard = ({ producto }) => {
         <h4>{producto.nombre}</h4>
         <p>{producto.marca}</p>
 
-        {/* 🔥 CAMBIO AQUÍ */}
-        <Link to={`/producto/${producto.slug}`}>
+        <Link to={`/producto/${producto.id}`}>
           <button>Ver Producto</button>
         </Link>
-
       </div>
 
     </div>

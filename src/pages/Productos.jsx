@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../services/firebase";
@@ -20,6 +20,7 @@ const Productos = () => {
     const unsubscribe = onSnapshot(
       collection(db, "productos"),
       (snapshot) => {
+
         const lista = snapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data()
@@ -33,14 +34,34 @@ const Productos = () => {
 
   }, []);
 
-  // 🔥 Agrupar productos por categoría y subcategoría
+  // 🔥 SEO dinámico por categoría
+  useEffect(() => {
+
+    if (categoria) {
+      document.title = `${categoria.toUpperCase()} | Creaciencia Perú`;
+    } else {
+      document.title = "Productos | Creaciencia Perú";
+    }
+
+    const meta = document.querySelector("meta[name='description']");
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        categoria
+          ? `Productos de ${categoria} en Creaciencia Perú. Equipamiento y material de laboratorio.`
+          : "Catálogo completo de productos de laboratorio en Creaciencia Perú."
+      );
+    }
+
+  }, [categoria]);
+
+  // 🔥 Agrupar productos
   const agruparProductos = () => {
 
     const estructura = {};
 
     productos.forEach((producto) => {
 
-      // Si estamos filtrando por categoría
       if (categoria && producto.categoria !== categoria) return;
 
       if (!estructura[producto.categoria]) {
@@ -61,7 +82,7 @@ const Productos = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
 
       <main className="catalogo-page">
 

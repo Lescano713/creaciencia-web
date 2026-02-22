@@ -17,6 +17,19 @@ const Home = () => {
   const [busquedaDebounced, setBusquedaDebounced] = useState("");
   const navigate = useNavigate();
 
+  // 🔥 SEO HOME
+  useEffect(() => {
+    document.title = "Creaciencia Perú | Equipamiento de laboratorio en Perú";
+
+    const meta = document.querySelector("meta[name='description']");
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Creaciencia Perú ofrece equipamiento científico, material de laboratorio y soluciones para educación, industria e investigación en Perú."
+      );
+    }
+  }, []);
+
   // 🔥 Obtener productos
   useEffect(() => {
     const unsub = onSnapshot(collection(db, "productos"), (snapshot) => {
@@ -31,7 +44,7 @@ const Home = () => {
     return () => unsub();
   }, []);
 
-  // 🔥 Debounce 300ms
+  // 🔥 Debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       setBusquedaDebounced(busqueda);
@@ -40,7 +53,7 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, [busqueda]);
 
-  // 🔥 Normalizar texto (sin tildes)
+  // 🔥 Normalizar texto
   const normalizar = (texto) => {
     return texto
       ?.toLowerCase()
@@ -48,25 +61,28 @@ const Home = () => {
       .replace(/[\u0300-\u036f]/g, "");
   };
 
-  // 🔥 Filtro SOLO por nombre o slug
+  // 🔥 Filtro por nombre
   const productosFiltrados =
-  busquedaDebounced.trim() === ""
-    ? productos
-    : productos.filter((p) => {
-        const nombreNormalizado = normalizar(p.nombre || "");
-        const busquedaNormalizada = normalizar(busquedaDebounced);
-
-        return nombreNormalizado.startsWith(busquedaNormalizada);
-      });
-
-
+    busquedaDebounced.trim() === ""
+      ? productos
+      : productos.filter((p) => {
+          const nombreNormalizado = normalizar(p.nombre || "");
+          const busquedaNormalizada = normalizar(busquedaDebounced);
+          return nombreNormalizado.startsWith(busquedaNormalizada);
+        });
 
   return (
     <main>
 
       {/* HERO */}
       <HeroSlider />
-      <Subscribe></Subscribe>
+
+      {/* H1 SEO INVISIBLE VISUALMENTE */}
+      <h1 style={{ display: "none" }}>
+        Creaciencia Perú - Equipamiento de laboratorio
+      </h1>
+
+      <Subscribe />
 
       {/* ===================== */}
       {/* SECCIÓN CATEGORÍAS */}
