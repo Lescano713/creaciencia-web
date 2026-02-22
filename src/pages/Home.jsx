@@ -76,6 +76,14 @@ const Home = () => {
 
       {/* HERO */}
       <HeroSlider />
+      <section style={{ padding: "60px 20px", maxWidth: "1000px", margin: "0 auto" }}>
+        <h2>Equipamiento de laboratorio en Perú</h2>
+        <p>
+          En Creaciencia Perú ofrecemos material de laboratorio, equipos científicos,
+          pipetas, microscopios y soluciones tecnológicas para instituciones educativas,
+          industria e investigación en todo el país.
+        </p>
+      </section>
 
       {/* H1 SEO INVISIBLE VISUALMENTE */}
       <h1 style={{ display: "none" }}>

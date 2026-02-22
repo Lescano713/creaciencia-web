@@ -93,6 +93,13 @@ const Productos = () => {
                 ? categoria.toUpperCase()
                 : "TODOS LOS PRODUCTOS"}
             </h1>
+            {categoria && (
+                <p style={{ maxWidth: "900px", margin: "20px auto", textAlign: "center" }}>
+                  Productos de {categoria} en Creaciencia Perú. 
+                  Equipamiento científico y material de laboratorio 
+                  para educación, industria e investigación en Perú.
+                </p>
+              )}
           </div>
         </section>
 
