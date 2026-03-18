@@ -24,7 +24,7 @@ const Navbar = () => {
 
           <Link to="/" className="logo">
           <img 
-            src="./images/logo.png" 
+            src="../images/logo.png" 
             alt="Creaciencia Logo" 
             className="nav-logo"
           />
