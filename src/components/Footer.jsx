@@ -11,7 +11,7 @@ const Footer = () => {
         {/* LOGO Y DESCRIPCIÓN */}
         <div className="footer-col footer-brand">
           <img 
-            src="./images/logo.png" 
+            src="../images/logo.png" 
             alt="Creaciencia Logo" 
             className="footer-logo"
           />
