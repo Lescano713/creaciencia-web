@@ -35,7 +35,10 @@ export default function Admin() {
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
-      .replace(/\s+/g, "-");
+      .replace(/[^a-z0-9\s-]/g, "") // clean slug
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-")
+      .trim();
   };
 
   // 🔥 Obtener productos en tiempo real
