@@ -1,8 +1,18 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
 import ProductDetail from './pages/ProductDetail';
 import Navbar from './components/Navbar';
+import Nosotros from "./pages/Nosotros";
+import Servicios from "./pages/Servicios";
+import Contacto from "./pages/Contacto";
+import Productos from "./pages/Productos";
+import Login from "./pages/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+
+
 
 function App() {
   return (
@@ -11,9 +21,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/admin-creaciencia" element={<Admin />} />
-        <Route path="/producto/:id" element={<ProductDetail />} />
-      </Routes>
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/productos/:categoria" element={<Productos />} />
+        <Route path="/producto/:slug" element={<ProductDetail />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route path="/productos" element={<Productos />} />
+        <Route path="/login" element={<Login />} />
+
+        <Route path="/admin"
+        element={<ProtectedRoute> <Admin /></ProtectedRoute>}/>
+        </Routes>
     </Router>
   );
 }
 export default App;
+

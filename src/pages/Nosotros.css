@@ -1,0 +1,137 @@
+/* ===================== */
+/* HERO */
+/* ===================== */
+
+.nosotros-hero {
+  height: 65vh;
+  background: url("/public/images/about-bg.avif") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlay elegante oscuro */
+.nosotros-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 25, 47, 0.85),
+    rgba(10, 25, 47, 0.92)
+  );
+}
+
+.nosotros-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 800px;
+  padding: 20px;
+  animation: fadeUp 1s ease forwards;
+}
+
+.nosotros-hero-content h1 {
+  font-size: 42px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+}
+
+.nosotros-hero-content p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+}
+
+/* ===================== */
+/* CONTENT SECTION */
+/* ===================== */
+
+.nosotros-section {
+  padding: 120px 20px;
+  background: #f8f9fa;
+}
+
+.nosotros-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.nosotros-text h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  color: #0d1b2a;
+}
+
+.nosotros-text p {
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* Imagen lateral */
+
+.nosotros-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  transition: 0.4s ease;
+}
+
+.nosotros-image img:hover {
+  transform: scale(1.03);
+}
+
+/* ===================== */
+/* ANIMACIÓN */
+/* ===================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 992px) {
+  .nosotros-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .nosotros-image {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .nosotros-hero {
+    height: 55vh;
+  }
+
+  .nosotros-hero-content h1 {
+    font-size: 28px;
+  }
+
+  .nosotros-hero-content p {
+    font-size: 16px;
+  }
+
+  .nosotros-section {
+    padding: 80px 20px;
+  }
+}

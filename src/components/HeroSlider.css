@@ -1,0 +1,140 @@
+.hero-slider {
+  position: relative;
+  height: 70vh;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 100px;
+}
+
+/* Cada slide ocupa todo el hero */
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-image: url("/public/images/hero-bg.avif");
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* FLEX REAL */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;        /* misma altura vertical */
+  justify-content: center;
+  padding: 0 8%;
+}
+
+/* Contenedor interno flex */
+.hero-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;        /* alinea imagen y texto */
+}
+
+/* TEXTO */
+.hero-text {
+  /* flex: 1; */
+  justify-content: center;
+  color: white;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  margin-bottom: 1.5rem;
+}
+
+/* IMAGEN */
+.hero-image {
+  /* flex: 1; */
+  align-self:baseline;
+  display: flex;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: 480px;
+  object-fit: contain;
+  margin: 30px;
+  /* object-position: center 75%; */
+}
+
+/* BOTÓN */
+.btn-red {
+  background: #e10600;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: transform 0.2s ease;
+}
+
+.btn-red:hover {
+  transform: scale(1.05);
+}
+
+/* FLECHAS */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+/* Quitamos los dots */
+.dots {
+  display: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-slider {
+    height: 65vh;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .arrow {
+    font-size: 1.5rem;
+  }
+}

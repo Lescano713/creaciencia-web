@@ -1,0 +1,144 @@
+/* ===================== */
+/* CONTACTO */
+/* ===================== */
+
+.contacto-section {
+  padding: 120px 20px;
+  background: linear-gradient(180deg, #f8f9fa 0%, #eef2f7 100%);
+}
+
+.contacto-container {
+  max-width: 900px;
+  margin: auto;
+  text-align: center;
+}
+
+.contacto-container h2 {
+  font-size: 32px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  color: #0d1b2a;
+}
+
+.contacto-desc {
+  max-width: 600px;
+  margin: 0 auto 50px;
+  color: #2a5d8f;
+}
+
+/* FORM */
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #003366;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,51,102,0.2);
+}
+
+textarea {
+  resize: none;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+button {
+  background: #003366;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #00509e;
+}
+
+.form-status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #003366;
+}
+
+/* ===================== */
+/* SERVICIOS */
+/* ===================== */
+
+.contacto-servicios {
+  padding: 100px 20px;
+  background: #0d1b2a;
+  text-align: center;
+  color: white;
+}
+
+.contacto-servicios h2 {
+  margin-bottom: 50px;
+  letter-spacing: 3px;
+}
+
+.servicios-grid {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.servicio-box {
+  width: 220px;
+  padding: 40px 20px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
+  transition: 0.4s ease;
+}
+
+.servicio-box:hover {
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-8px);
+}
+
+.icon {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 768px) {
+
+  .row {
+    flex-direction: column;
+  }
+
+  .contacto-section {
+    padding: 80px 20px;
+  }
+
+}

@@ -1,0 +1,222 @@
+/* main{
+  padding: 0;
+} */
+
+/* ===================== */
+/* PRODUCTS SECTION */
+/* ===================== */
+
+.products-section {
+  position: relative;
+  width: 100vw;
+  padding: 120px 10px;
+  background: url("/public/images/nav-bg.png") center contain;
+}
+.search-container {
+  margin: 30px 0;
+  text-align: center;
+}
+/* ===================== */
+/* search SECTION */
+/* ===================== */
+.search-container {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.search-input {
+  width: 60%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #111;
+}
+
+.search-hint {
+  margin-top: 10px;
+  color: #888;
+  font-size: 14px;
+}
+
+.no-results {
+  text-align: center;
+  margin: 30px 0;
+  color: #888;
+  font-size: 16px;
+}
+
+/* Overlay oscuro 85% */
+/* .products-overlay {
+  background: rgba(10, 25, 47, 0.85); 
+  padding: 80px 20px; */
+/* } */
+
+/* Títulos */
+.section-title {
+  text-align: center;
+  color: white;
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 60px;
+  letter-spacing: 3px;
+}
+
+.section-title.dark {
+  color: #0d1b2a;
+}
+
+/* ===================== */
+/* CATEGORIES GRID */
+/* ===================== */
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* Card base */
+.cat-card {
+  position: relative;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* IMÁGENES */
+.cat-card:nth-child(1) {
+  background-image: url("/public/images/industria.webp");
+}
+
+.cat-card:nth-child(2) {
+  background-image: url("/public/images/investigacion.webp");
+}
+
+.cat-card:nth-child(3) {
+  background-image: url("/public/images/educacion.webp");
+}
+
+/* Capa azul */
+.cat-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 60, 120, 0.274);
+  transition: background 0.4s ease;
+}
+
+/* Texto */
+.cat-card h3 {
+  position: relative;
+  color: white;
+  font-size: 22px;
+  letter-spacing: 3px;
+  font-weight: 500;
+  z-index: 2;
+  transition: transform 0.4s ease;
+}
+
+/* Hover elegante */
+.cat-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cat-card:hover .cat-overlay {
+  background: rgba(0, 90, 180, 0.7);
+}
+
+.cat-card:hover h3 {
+  transform: scale(1.08);
+}
+
+/* ===================== */
+/* CATÁLOGO */
+/* ===================== */
+
+.catalog {
+  padding: 100px 20px;
+  background: #f8f9fa;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1200px;
+  margin: 50px auto 0;
+}
+
+/* ===================== */
+/* SERVICES */
+/* ===================== */
+
+.services-section {
+  padding: 100px 20px;
+  background: white;
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: 60px auto 0;
+}
+
+.service-card {
+  background: #0d1b2a;
+  color: white;
+  padding: 60px 20px;
+  border-radius: 8px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===================== */
+/* RESPONSIVE */
+/* ===================== */
+
+@media (max-width: 768px) {
+
+  .products-section {
+    padding: 80px 20px;
+    background: url("/public/images/nav-bg.png");
+
+  }
+
+  .products-overlay {
+    padding: 60px 15px;
+  }
+
+  .section-title {
+    font-size: 26px;
+  }
+
+  .cat-card {
+    height: 220px;
+  }
+
+  .cat-card h3 {
+    font-size: 18px;
+  }
+
+}

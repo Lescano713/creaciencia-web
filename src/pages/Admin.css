@@ -1,0 +1,101 @@
+.admin-container {
+  min-height: 100vh;
+  background: #0d1117;
+  color: white;
+  padding: 40px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.admin-header h1 {
+  font-size: 28px;
+}
+
+.logout-btn {
+  padding: 8px 14px;
+  background: #e63946;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.admin-form,
+.admin-list {
+  background: #161b22;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.admin-form h2,
+.admin-list h2 {
+  margin-bottom: 20px;
+}
+
+.admin-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+}
+
+.admin-form button {
+  padding: 10px;
+  background: #1f6feb;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.admin-form button:disabled {
+  opacity: 0.6;
+}
+
+.admin-message {
+  font-size: 14px;
+  color: #52c41a;
+}
+
+.admin-product-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #21262d;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.delete-btn {
+  background: #e63946;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
